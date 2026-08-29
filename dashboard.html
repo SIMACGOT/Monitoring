@@ -1,0 +1,2960 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>SIMACGOT | Dashboard Monitoring</title>
+
+    <!-- =====================================================
+         BOOTSTRAP
+    ====================================================== -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         GOOGLE FONT
+    ====================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         BOOTSTRAP ICON
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+
+    <!-- =====================================================
+         SWEET ALERT
+    ====================================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- =====================================================
+         CHART.JS
+    ====================================================== -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <!-- =====================================================
+         FAVICON
+    ====================================================== -->
+
+    <link
+        rel="icon"
+        href="logo.png"
+        type="image/x-icon"
+    >
+
+
+    <!-- =====================================================
+         CSS
+    ====================================================== -->
+
+    <style>
+
+        /* =====================================================
+           ROOT
+        ====================================================== */
+
+        :root {
+
+            --primary-brown: #6D4C41;
+
+            --dark-brown: #3E2723;
+
+            --light-brown: #D7CCC8;
+
+            --lighter-brown: #EFEBE9;
+
+            --bg-white: #FFFFFF;
+
+            --bg-offwhite: #FAFAFA;
+
+            --text-muted: #8D6E63;
+
+            --success: #2E7D32;
+
+            --danger: #C62828;
+
+            --warning: #EF6C00;
+
+        }
+
+
+        /* =====================================================
+           RESET
+        ====================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            font-family: 'Poppins', sans-serif;
+
+            background-color: var(--bg-offwhite);
+
+            color: var(--dark-brown);
+
+            overflow-x: hidden;
+
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ====================================================== */
+
+        .navbar {
+
+            background-color: var(--bg-white) !important;
+
+            border-bottom: 1px solid #eee;
+
+            padding: 13px 0;
+
+            box-shadow:
+                0 4px 12px rgba(0, 0, 0, 0.05);
+
+        }
+
+
+        .navbar-brand {
+
+            display: flex;
+
+            align-items: center;
+
+            font-size: 21px;
+
+            font-weight: 700;
+
+            color: var(--primary-brown) !important;
+
+            text-decoration: none;
+
+        }
+
+
+        .navbar-brand img {
+
+            width: 42px;
+
+            height: 42px;
+
+            object-fit: contain;
+
+            margin-right: 10px;
+
+        }
+
+
+        .navbar-subtitle {
+
+            display: block;
+
+            font-size: 10px;
+
+            font-weight: 400;
+
+            color: var(--text-muted);
+
+            line-height: 1.2;
+
+        }
+
+
+        /* =====================================================
+           USER AREA
+        ====================================================== */
+
+        .user-area {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+        }
+
+
+        .user-avatar {
+
+            width: 40px;
+
+            height: 40px;
+
+            border-radius: 50%;
+
+            background-color: var(--lighter-brown);
+
+            color: var(--primary-brown);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 18px;
+
+        }
+
+
+        .user-info {
+
+            line-height: 1.2;
+
+        }
+
+
+        .user-name {
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            color: var(--dark-brown);
+
+        }
+
+
+        .user-role {
+
+            font-size: 11px;
+
+            color: var(--text-muted);
+
+        }
+
+
+        .btn-logout {
+
+            border: 1px solid var(--light-brown);
+
+            background-color: white;
+
+            color: var(--primary-brown);
+
+            border-radius: 8px;
+
+            padding: 8px 14px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+
+            margin-left: 25px;
+
+        }
+
+
+        .btn-logout:hover {
+
+            background-color: var(--primary-brown);
+
+            color: white;
+
+        }
+
+
+        /* =====================================================
+           MAIN
+        ====================================================== */
+
+        main {
+
+            padding-top: 105px;
+
+            padding-bottom: 60px;
+
+        }
+
+
+        /* =====================================================
+           PAGE HEADER
+        ====================================================== */
+
+        .page-header {
+
+            margin-bottom: 35px;
+
+        }
+
+
+        .page-label {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 6px 13px;
+
+            background-color: rgba(109, 76, 65, 0.08);
+
+            color: var(--primary-brown);
+
+            border-radius: 30px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .online-dot {
+
+            width: 8px;
+
+            height: 8px;
+
+            border-radius: 50%;
+
+            background-color: #4CAF50;
+
+            animation: pulse 1.8s infinite;
+
+        }
+
+
+        @keyframes pulse {
+
+            0% {
+                box-shadow: 0 0 0 0 rgba(76,175,80,0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 7px rgba(76,175,80,0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(76,175,80,0);
+            }
+
+        }
+
+
+        .page-title {
+
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+
+            font-weight: 700;
+
+            color: var(--dark-brown);
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .page-description {
+
+            color: var(--text-muted);
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+            max-width: 700px;
+
+            margin-bottom: 0;
+
+        }
+
+
+        /* =====================================================
+           SUMMARY
+        ====================================================== */
+
+        .summary-card {
+
+            background-color: white;
+
+            border: 1px solid #eee;
+
+            border-radius: 15px;
+
+            padding: 20px;
+
+            height: 100%;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.04);
+
+        }
+
+
+        .summary-icon {
+
+            width: 45px;
+
+            height: 45px;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background-color: rgba(109, 76, 65, 0.1);
+
+            color: var(--primary-brown);
+
+            font-size: 21px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .summary-title {
+
+            font-size: 12px;
+
+            color: var(--text-muted);
+
+            margin-bottom: 3px;
+
+        }
+
+
+        .summary-value {
+
+            font-size: 24px;
+
+            font-weight: 700;
+
+            color: var(--dark-brown);
+
+        }
+
+
+        /* =====================================================
+           SECTION TITLE
+        ====================================================== */
+
+        .section-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-top: 45px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .section-title {
+
+            font-size: 20px;
+
+            font-weight: 700;
+
+            color: var(--dark-brown);
+
+            margin: 0;
+
+        }
+
+
+        .section-subtitle {
+
+            font-size: 12px;
+
+            color: var(--text-muted);
+
+        }
+
+        /* =====================================================
+           CHART CONTAINER
+        ====================================================== */
+        .chart-container {
+            position: relative;
+            height: 300px; /* Diperpendek sedikit agar pas di layar */
+            width: 100%;
+        }
+
+
+        /* =====================================================
+           BOX CARD
+        ====================================================== */
+
+        .box-card {
+
+            background-color: var(--bg-white);
+
+            border: 1px solid #eee;
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            height: 100%;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.05);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+
+        }
+
+
+        .box-card:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 15px 35px rgba(109,76,65,0.10);
+
+        }
+
+
+        /* =====================================================
+           BOX HEADER
+        ====================================================== */
+
+        .box-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding-bottom: 18px;
+
+            margin-bottom: 20px;
+
+            border-bottom: 1px solid #eee;
+
+        }
+
+
+        .box-title-wrapper {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+        }
+
+
+        .box-icon {
+
+            width: 45px;
+
+            height: 45px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background-color: var(--lighter-brown);
+
+            color: var(--primary-brown);
+
+            font-size: 21px;
+
+        }
+
+
+        .box-title {
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            color: var(--dark-brown);
+
+            margin: 0;
+
+        }
+
+
+        .box-location {
+
+            font-size: 11px;
+
+            color: var(--text-muted);
+
+        }
+
+
+        .box-status {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            font-size: 10px;
+
+            font-weight: 600;
+
+            background-color: #E8F5E9;
+
+            color: var(--success);
+
+        }
+
+
+        .box-status-dot {
+
+            width: 6px;
+
+            height: 6px;
+
+            background-color: var(--success);
+
+            border-radius: 50%;
+
+        }
+
+
+        /* =====================================================
+           SENSOR CARD
+        ====================================================== */
+
+        .sensor-grid {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 12px;
+
+            margin-bottom: 22px;
+
+        }
+
+
+        .sensor-card {
+
+            background-color: var(--bg-offwhite);
+
+            border: 1px solid #eee;
+
+            border-radius: 13px;
+
+            padding: 17px;
+
+        }
+
+
+        .sensor-label {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            color: var(--text-muted);
+
+            font-size: 11px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .sensor-label i {
+
+            color: var(--primary-brown);
+
+            font-size: 15px;
+
+        }
+
+
+        .sensor-value {
+
+            color: var(--dark-brown);
+
+            font-size: 25px;
+
+            font-weight: 700;
+
+            line-height: 1;
+
+        }
+
+
+        .sensor-unit {
+
+            color: var(--text-muted);
+
+            font-size: 11px;
+
+            margin-left: 2px;
+
+        }
+
+
+        /* =====================================================
+           CONTROL TITLE
+        ====================================================== */
+
+        .control-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: var(--dark-brown);
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .control-title i {
+
+            color: var(--primary-brown);
+
+        }
+
+
+        /* =====================================================
+           ACTUATOR
+        ====================================================== */
+
+        .actuator-list {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 9px;
+
+        }
+
+
+        .actuator-item {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 12px 14px;
+
+            background-color: var(--bg-offwhite);
+
+            border: 1px solid #eee;
+
+            border-radius: 11px;
+
+        }
+
+
+        .actuator-name {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            font-size: 12px;
+
+            font-weight: 500;
+
+            color: var(--dark-brown);
+
+        }
+
+
+        .actuator-icon {
+
+            width: 30px;
+
+            height: 30px;
+
+            border-radius: 8px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background-color: var(--lighter-brown);
+
+            color: var(--primary-brown);
+
+            font-size: 14px;
+
+        }
+
+
+        /* =====================================================
+           STATUS BADGE
+        ====================================================== */
+
+        .status-badge {
+
+            min-width: 58px;
+
+            text-align: center;
+
+            padding: 5px 9px;
+
+            border-radius: 20px;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+        }
+
+
+        .status-on {
+
+            background-color: #E8F5E9;
+
+            color: var(--success);
+
+        }
+
+
+        .status-off {
+
+            background-color: #F5F5F5;
+
+            color: #757575;
+
+        }
+
+
+        /* =====================================================
+           LAST UPDATE
+        ====================================================== */
+
+        .last-update {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 6px;
+
+            color: var(--text-muted);
+
+            font-size: 10px;
+
+            margin-top: 17px;
+
+        }
+
+
+        /* =====================================================
+           LOADING
+        ====================================================== */
+
+        .loading-box {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-height: 350px;
+
+            color: var(--text-muted);
+
+        }
+
+
+        .spinner-border {
+
+            color: var(--primary-brown);
+
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ====================================================== */
+
+        footer {
+
+            background-color: var(--dark-brown);
+
+            color: white;
+
+            padding: 35px 0 20px;
+
+            margin-top: 20px;
+
+        }
+
+
+        .footer-title {
+
+            font-weight: 700;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .footer-desc {
+
+            color: var(--light-brown);
+
+            font-size: 12px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .footer-copy {
+
+            color: #aaa;
+
+            font-size: 10px;
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ====================================================== */
+
+        @media (max-width: 991px) {
+
+            .user-info {
+                display: none;
+            }
+
+            .navbar-brand {
+                font-size: 19px;
+            }
+
+            .box-card {
+                margin-bottom: 5px;
+            }
+
+        }
+
+
+        @media (max-width: 767px) {
+
+            main {
+                padding-top: 90px;
+            }
+
+            .page-header {
+                margin-bottom: 25px;
+            }
+
+            .page-title {
+                font-size: 1.7rem;
+            }
+
+            .page-description {
+                font-size: 12px;
+            }
+
+            .summary-card {
+                padding: 16px;
+            }
+
+            .summary-value {
+                font-size: 20px;
+            }
+
+            .section-header {
+                margin-top: 35px;
+            }
+
+            .box-card {
+                padding: 20px;
+            }
+
+        }
+
+
+        @media (max-width: 480px) {
+
+            .navbar-brand img {
+                width: 36px;
+                height: 36px;
+            }
+
+            .navbar-brand {
+                font-size: 17px;
+            }
+
+            .btn-logout {
+                padding: 7px 10px;
+                font-size: 11px;
+            }
+
+            .sensor-value {
+                font-size: 21px;
+            }
+
+            .sensor-card {
+                padding: 14px;
+            }
+
+            .box-title {
+                font-size: 16px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================== -->
+
+<nav class="navbar navbar-expand-lg fixed-top">
+
+    <div class="container">
+
+        <a
+            class="navbar-brand"
+            href="index.html"
+        >
+
+            <img
+                src="logo.png"
+                alt="Logo SIMACGOT"
+            >
+
+            <div>
+
+                SIMACGOT
+
+                <span class="navbar-subtitle">
+                    Smart Maggot Monitoring
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <div class="user-area">
+
+            <div class="user-avatar">
+
+                <i class="bi bi-person"></i>
+
+            </div>
+
+
+            <div class="user-info">
+
+                <div
+                    class="user-name"
+                    id="displayUsername"
+                >
+                    Administrator
+                </div>
+
+                <div class="user-role">
+                    Pengguna SIMACGOT
+                </div>
+
+            </div>
+
+
+            <button
+                class="btn-logout"
+                id="logoutBtn"
+            >
+
+                <i class="bi bi-box-arrow-right"></i>
+
+                Keluar
+
+            </button>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =========================================================
+     MAIN
+========================================================== -->
+
+<main>
+
+    <div class="container">
+
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+
+        <div class="page-header">
+
+            <div class="page-label">
+
+                <span class="online-dot"></span>
+
+                SISTEM ONLINE
+
+            </div>
+
+
+            <h1 class="page-title">
+                Dashboard Monitoring
+            </h1>
+
+
+            <p class="page-description">
+
+                Pantau kondisi suhu, kelembaban, serta status
+                aktuator pada setiap box budidaya maggot secara
+                real-time melalui sistem IoT SIMACGOT.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             SUMMARY
+        ================================================== -->
+
+        <div class="row g-3">
+
+            <!-- BOX AKTIF -->
+
+            <div class="col-6 col-lg-3">
+
+                <div class="summary-card">
+
+                    <div class="summary-icon">
+
+                        <i class="bi bi-box-seam"></i>
+
+                    </div>
+
+                    <div class="summary-title">
+                        Box Monitoring
+                    </div>
+
+                    <div
+                        class="summary-value"
+                        id="summaryBox"
+                    >
+                        3
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SUHU RATA-RATA -->
+
+            <div class="col-6 col-lg-3">
+
+                <div class="summary-card">
+
+                    <div class="summary-icon">
+
+                        <i class="bi bi-thermometer-half"></i>
+
+                    </div>
+
+                    <div class="summary-title">
+                        Rata-rata Suhu
+                    </div>
+
+                    <div
+                        class="summary-value"
+                        id="averageTemperature"
+                    >
+                        -- °C
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- KELEMBABAN RATA-RATA -->
+
+            <div class="col-6 col-lg-3">
+
+                <div class="summary-card">
+
+                    <div class="summary-icon">
+
+                        <i class="bi bi-droplet-half"></i>
+
+                    </div>
+
+                    <div class="summary-title">
+                        Rata-rata Kelembaban
+                    </div>
+
+                    <div
+                        class="summary-value"
+                        id="averageHumidity"
+                    >
+                        -- %
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- AKTUATOR AKTIF -->
+
+            <div class="col-6 col-lg-3">
+
+                <div class="summary-card">
+
+                    <div class="summary-icon">
+
+                        <i class="bi bi-lightning-charge"></i>
+
+                    </div>
+
+                    <div class="summary-title">
+                        Aktuator Aktif
+                    </div>
+
+                    <div
+                        class="summary-value"
+                        id="activeActuator"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             BOX MONITORING
+        ================================================== -->
+
+        <div class="section-header">
+
+            <div>
+
+                <h2 class="section-title">
+                    Monitoring Box
+                </h2>
+
+                <div class="section-subtitle">
+                    Data diperbarui secara real-time
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div
+            class="row g-4"
+            id="boxContainer"
+        >
+
+            <!-- BOX 1 -->
+
+            <div class="col-lg-4">
+
+                <div class="box-card">
+
+                    <div class="box-header">
+
+                        <div class="box-title-wrapper">
+
+                            <div class="box-icon">
+
+                                <i class="bi bi-box"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h3 class="box-title">
+                                    BOX 1
+                                </h3>
+
+                                <div class="box-location">
+                                    Monitoring Maggot
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="box-status">
+
+                            <span class="box-status-dot"></span>
+
+                            ONLINE
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- SENSOR -->
+
+                    <div class="sensor-grid">
+
+                        <div class="sensor-card">
+
+                            <div class="sensor-label">
+
+                                <i class="bi bi-thermometer-half"></i>
+
+                                Suhu
+
+                            </div>
+
+                            <span
+                                class="sensor-value"
+                                id="suhu1"
+                            >
+                                --
+                            </span>
+
+                            <span class="sensor-unit">
+                                °C
+                            </span>
+
+                        </div>
+
+
+                        <div class="sensor-card">
+
+                            <div class="sensor-label">
+
+                                <i class="bi bi-droplet-half"></i>
+
+                                Kelembaban
+
+                            </div>
+
+                            <span
+                                class="sensor-value"
+                                id="kelembaban1"
+                            >
+                                --
+                            </span>
+
+                            <span class="sensor-unit">
+                                %
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- CONTROL -->
+
+                    <div class="control-title">
+
+                        <i class="bi bi-sliders"></i>
+
+                        Status Aktuator
+
+                    </div>
+
+
+                    <div class="actuator-list">
+
+
+                        <!-- KIPAS -->
+
+                        <div class="actuator-item">
+
+                            <div class="actuator-name">
+
+                                <div class="actuator-icon">
+
+                                    <i class="bi bi-fan"></i>
+
+                                </div>
+
+                                Kipas
+
+                            </div>
+
+                            <span
+                                id="kipas1"
+                                class="status-badge status-off"
+                            >
+                                OFF
+                            </span>
+
+                        </div>
+
+
+                        <!-- LAMPU -->
+
+                        <div class="actuator-item">
+
+                            <div class="actuator-name">
+
+                                <div class="actuator-icon">
+
+                                    <i class="bi bi-lightbulb"></i>
+
+                                </div>
+
+                                Lampu
+
+                            </div>
+
+                            <span
+                                id="lampu1"
+                                class="status-badge status-off"
+                            >
+                                OFF
+                            </span>
+
+                        </div>
+
+
+                        <!-- MIST MAKER -->
+
+                        <div class="actuator-item">
+
+                            <div class="actuator-name">
+
+                                <div class="actuator-icon">
+
+                                    <i class="bi bi-cloud-fog2"></i>
+
+                                </div>
+
+                                Mist Maker
+
+                            </div>
+
+                            <span
+                                id="mist1"
+                                class="status-badge status-off"
+                            >
+                                OFF
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="last-update">
+
+                        <i class="bi bi-clock"></i>
+
+                        Update:
+                        
+                        <span id="update1">
+                            --
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 BOX 2
+            ================================================== -->
+
+            <div class="col-lg-4">
+
+                <div class="box-card">
+
+                    <div class="box-header">
+
+                        <div class="box-title-wrapper">
+
+                            <div class="box-icon">
+
+                                <i class="bi bi-box"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h3 class="box-title">
+                                    BOX 2
+                                </h3>
+
+                                <div class="box-location">
+                                    Monitoring Maggot
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="box-status">
+
+                            <span class="box-status-dot"></span>
+
+                            ONLINE
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="sensor-grid">
+
+                        <div class="sensor-card">
+
+                            <div class="sensor-label">
+
+                                <i class="bi bi-thermometer-half"></i>
+
+                                Suhu
+
+                            </div>
+
+                            <span
+                                class="sensor-value"
+                                id="suhu2"
+                            >
+                                --
+                            </span>
+
+                            <span class="sensor-unit">
+                                °C
+                            </span>
+
+                        </div>
+
+
+                        <div class="sensor-card">
+
+                            <div class="sensor-label">
+
+                                <i class="bi bi-droplet-half"></i>
+
+                                Kelembaban
+
+                            </div>
+
+                            <span
+                                class="sensor-value"
+                                id="kelembaban2"
+                            >
+                                --
+                            </span>
+
+                            <span class="sensor-unit">
+                                %
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="control-title">
+
+                        <i class="bi bi-sliders"></i>
+
+                        Status Aktuator
+
+                    </div>
+
+
+                    <div class="actuator-list">
+
+                        <div class="actuator-item">
+
+                            <div class="actuator-name">
+
+                                <div class="actuator-icon">
+
+                                    <i class="bi bi-fan"></i>
+
+                                </div>
+
+                                Kipas
+
+                            </div>
+
+                            <span
+                                id="kipas2"
+                                class="status-badge status-off"
+                            >
+                                OFF
+                            </span>
+
+                        </div>
+
+
+                        <div class="actuator-item">
+
+                            <div class="actuator-name">
+
+                                <div class="actuator-icon">
+
+                                    <i class="bi bi-lightbulb"></i>
+
+                                </div>
+
+                                Lampu
+
+                            </div>
+
+                            <span
+                                id="lampu2"
+                                class="status-badge status-off"
+                            >
+                                OFF
+                            </span>
+
+                        </div>
+
+
+                        <div class="actuator-item">
+
+                            <div class="actuator-name">
+
+                                <div class="actuator-icon">
+
+                                    <i class="bi bi-cloud-fog2"></i>
+
+                                </div>
+
+                                Mist Maker
+
+                            </div>
+
+                            <span
+                                id="mist2"
+                                class="status-badge status-off"
+                            >
+                                OFF
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="last-update">
+
+                        <i class="bi bi-clock"></i>
+
+                        Update:
+
+                        <span id="update2">
+                            --
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 BOX 3
+            ================================================== -->
+
+            <div class="col-lg-4">
+
+                <div class="box-card">
+
+                    <div class="box-header">
+
+                        <div class="box-title-wrapper">
+
+                            <div class="box-icon">
+
+                                <i class="bi bi-box"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h3 class="box-title">
+                                    BOX 3
+                                </h3>
+
+                                <div class="box-location">
+                                    Monitoring Maggot
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="box-status">
+
+                            <span class="box-status-dot"></span>
+
+                            ONLINE
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="sensor-grid">
+
+                        <div class="sensor-card">
+
+                            <div class="sensor-label">
+
+                                <i class="bi bi-thermometer-half"></i>
+
+                                Suhu
+
+                            </div>
+
+                            <span
+                                class="sensor-value"
+                                id="suhu3"
+                            >
+                                --
+                            </span>
+
+                            <span class="sensor-unit">
+                                °C
+                            </span>
+
+                        </div>
+
+
+                        <div class="sensor-card">
+
+                            <div class="sensor-label">
+
+                                <i class="bi bi-droplet-half"></i>
+
+                                Kelembaban
+
+                            </div>
+
+                            <span
+                                class="sensor-value"
+                                id="kelembaban3"
+                            >
+                                --
+                            </span>
+
+                            <span class="sensor-unit">
+                                %
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="control-title">
+
+                        <i class="bi bi-sliders"></i>
+
+                        Status Aktuator
+
+                    </div>
+
+
+                    <div class="actuator-list">
+
+                        <div class="actuator-item">
+
+                            <div class="actuator-name">
+
+                                <div class="actuator-icon">
+
+                                    <i class="bi bi-fan"></i>
+
+                                </div>
+
+                                Kipas
+
+                            </div>
+
+                            <span
+                                id="kipas3"
+                                class="status-badge status-off"
+                            >
+                                OFF
+                            </span>
+
+                        </div>
+
+
+                        <div class="actuator-item">
+
+                            <div class="actuator-name">
+
+                                <div class="actuator-icon">
+
+                                    <i class="bi bi-lightbulb"></i>
+
+                                </div>
+
+                                Lampu
+
+                            </div>
+
+                            <span
+                                id="lampu3"
+                                class="status-badge status-off"
+                            >
+                                OFF
+                            </span>
+
+                        </div>
+
+
+                        <div class="actuator-item">
+
+                            <div class="actuator-name">
+
+                                <div class="actuator-icon">
+
+                                    <i class="bi bi-cloud-fog2"></i>
+
+                                </div>
+
+                                Mist Maker
+
+                            </div>
+
+                            <span
+                                id="mist3"
+                                class="status-badge status-off"
+                            >
+                                OFF
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="last-update">
+
+                        <i class="bi bi-clock"></i>
+
+                        Update:
+
+                        <span id="update3">
+                            --
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =================================================
+             GRAFIK HISTORIS (SUHU & KELEMBABAN)
+        ================================================== -->
+        <div class="section-header" style="margin-top: 60px;">
+            <div>
+                <h2 class="section-title">Grafik Historis</h2>
+                <div class="section-subtitle">Menampilkan 10 data terakhir (Update tiap 10 detik)</div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- WADAH GRAFIK SUHU -->
+            <div class="col-lg-6">
+                <div class="box-card">
+                    <h3 class="box-title mb-4">Grafik Suhu</h3>
+                    <div class="chart-container">
+                        <canvas id="suhuChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WADAH GRAFIK KELEMBABAN -->
+            <div class="col-lg-6">
+                <div class="box-card">
+                    <h3 class="box-title mb-4">Grafik Kelembaban</h3>
+                    <div class="chart-container">
+                        <canvas id="kelChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================== -->
+
+<footer class="text-center">
+
+    <div class="container">
+
+        <h3 class="footer-title">
+            SIMACGOT
+        </h3>
+
+        <p class="footer-desc">
+            Sistem Monitoring dan Controlling Suhu dan Kelembaban Maggot
+        </p>
+
+        <hr
+            style="border-color: rgba(255,255,255,0.2);"
+        >
+
+        <p class="footer-copy mb-0">
+
+            &copy; 2026 SIMACGOT.
+            All Rights Reserved.
+
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     BOOTSTRAP JS
+========================================================== -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+></script>
+
+
+
+<!-- =========================================================
+     FIREBASE JAVASCRIPT
+========================================================== -->
+
+<script type="module">
+
+    // =========================================================
+    // IMPORT FIREBASE
+    // =========================================================
+
+    import {
+        initializeApp
+    }
+    from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+
+
+    import {
+        getDatabase,
+        ref,
+        onValue
+    }
+    from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+
+
+
+    // =========================================================
+    // FIREBASE CONFIGURATION
+    // =========================================================
+
+    const firebaseConfig = {
+
+        apiKey:
+            "AIzaSyD5ocwNY31vRTzhopV1v_yU1i3ilsYeUrs",
+
+        authDomain:
+            "simaggot-c6551.firebaseapp.com",
+
+        databaseURL:
+            "https://simaggot-c6551-default-rtdb.firebaseio.com",
+
+        projectId:
+            "simaggot-c6551",
+
+        storageBucket:
+            "simaggot-c6551.firebasestorage.app",
+
+        messagingSenderId:
+            "79299432173",
+
+        appId:
+            "1:79299432173:web:ff09bf0a4a7702f46346e4"
+
+    };
+
+
+
+    // =========================================================
+    // INITIALIZE FIREBASE
+    // =========================================================
+
+    const app =
+        initializeApp(firebaseConfig);
+
+
+    const db =
+        getDatabase(app);
+
+
+
+    console.log(
+        "Firebase SIMACGOT berhasil terhubung."
+    );
+
+
+
+    // =========================================================
+    // CEK LOGIN
+    // =========================================================
+
+    const username =
+        localStorage.getItem("username");
+
+
+    if (!username) {
+
+        Swal.fire({
+
+            icon: "warning",
+
+            title: "Belum Login",
+
+            text:
+                "Silakan login terlebih dahulu.",
+
+            confirmButtonColor:
+                "#6D4C41"
+
+        }).then(() => {
+
+            window.location.href =
+                "index.html";
+
+        });
+
+    }
+    else {
+
+        document
+            .getElementById("displayUsername")
+            .textContent = username;
+
+    }
+
+
+
+    // =========================================================
+    // LOGOUT
+    // =========================================================
+
+    document
+        .getElementById("logoutBtn")
+        .addEventListener(
+            "click",
+            function() {
+
+                Swal.fire({
+
+                    title: "Keluar dari SIMACGOT?",
+
+                    text:
+                        "Anda akan kembali ke halaman utama.",
+
+                    icon: "question",
+
+                    showCancelButton: true,
+
+                    confirmButtonText: "Ya, Keluar",
+
+                    cancelButtonText: "Batal",
+
+                    confirmButtonColor:
+                        "#6D4C41"
+
+                }).then((result) => {
+
+                    if (result.isConfirmed) {
+
+                        localStorage.removeItem(
+                            "username"
+                        );
+
+                        window.location.href =
+                            "index.html";
+
+                    }
+
+                });
+
+            }
+        );
+
+
+
+    // =========================================================
+    // DATA BOX
+    // =========================================================
+
+    const boxData = {
+
+        1: {
+
+            suhu:
+                "Data/Box1/Monitoring/Suhu1",
+
+            kelembaban:
+                "Data/Box1/Monitoring/Kelembaban1",
+
+            kipas:
+                "Data/Box1/Controlling/RelayKipas1",
+
+            lampu:
+                "Data/Box1/Controlling/RelayLampu1",
+
+            mist:
+                "Data/Box1/Controlling/RelaySpringkler1"
+
+        },
+
+
+        2: {
+
+            suhu:
+                "Data/Box2/Monitoring/Suhu2",
+
+            kelembaban:
+                "Data/Box2/Monitoring/Kelembaban2",
+
+            kipas:
+                "Data/Box2/Controlling/RelayKipas2",
+
+            lampu:
+                "Data/Box2/Controlling/RelayLampu2",
+
+            mist:
+                "Data/Box2/Controlling/RelaySpringkler2"
+
+        },
+
+
+        3: {
+
+            suhu:
+                "Data/Box3/Monitoring/Suhu3",
+
+            kelembaban:
+                "Data/Box3/Monitoring/Kelembaban3",
+
+            kipas:
+                "Data/Box3/Controlling/RelayKipas3",
+
+            lampu:
+                "Data/Box3/Controlling/RelayLampu3",
+
+            mist:
+                "Data/Box3/Controlling/RelaySpringkler3"
+
+        }
+
+    };
+
+
+
+    // =========================================================
+    // DATA LOKAL
+    // =========================================================
+
+    const currentData = {
+
+        1: {
+            suhu: 0,
+            kelembaban: 0,
+            kipas: false,
+            lampu: false,
+            mist: false
+        },
+
+        2: {
+            suhu: 0,
+            kelembaban: 0,
+            kipas: false,
+            lampu: false,
+            mist: false
+        },
+
+        3: {
+            suhu: 0,
+            kelembaban: 0,
+            kipas: false,
+            lampu: false,
+            mist: false
+        }
+
+    };
+
+
+
+    // =========================================================
+    // FORMAT ANGKA
+    // =========================================================
+
+    function formatNumber(value) {
+
+        const number =
+            Number(value);
+
+
+        if (isNaN(number)) {
+
+            return "--";
+
+        }
+
+
+        return number.toFixed(1);
+
+    }
+
+
+
+    // =========================================================
+    // UPDATE SENSOR
+    // =========================================================
+
+    function updateSensor(
+        boxNumber,
+        sensor,
+        value
+    ) {
+
+        currentData[boxNumber][sensor] =
+            Number(value);
+
+
+        const element =
+            document.getElementById(
+                sensor + boxNumber
+            );
+
+
+        if (!element) return;
+
+
+        element.textContent =
+            formatNumber(value);
+
+
+        updateSummary();
+
+    }
+
+
+
+    // =========================================================
+    // UPDATE ACTUATOR
+    // =========================================================
+
+    function updateActuator(
+        boxNumber,
+        actuator,
+        value
+    ) {
+
+        const state =
+            value === true ||
+            value === 1 ||
+            value === "1" ||
+            value === "true" ||
+            value === "ON";
+
+
+        currentData[boxNumber][actuator] =
+            state;
+
+
+        const element =
+            document.getElementById(
+                actuator + boxNumber
+            );
+
+
+        if (!element) return;
+
+
+        if (state) {
+
+            element.textContent =
+                "ON";
+
+            element.classList.remove(
+                "status-off"
+            );
+
+            element.classList.add(
+                "status-on"
+            );
+
+        }
+        else {
+
+            element.textContent =
+                "OFF";
+
+            element.classList.remove(
+                "status-on"
+            );
+
+            element.classList.add(
+                "status-off"
+            );
+
+        }
+
+
+        updateSummary();
+
+    }
+
+
+
+    // =========================================================
+    // UPDATE TIME
+    // =========================================================
+
+    function updateTime(boxNumber) {
+
+        const element =
+            document.getElementById(
+                "update" + boxNumber
+            );
+
+
+        if (!element) return;
+
+
+        const now =
+            new Date();
+
+
+        element.textContent =
+            now.toLocaleTimeString(
+                "id-ID",
+                {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit"
+                }
+            );
+
+    }
+
+
+
+    // =========================================================
+    // UPDATE SUMMARY
+    // =========================================================
+
+    function updateSummary() {
+
+        let totalTemperature = 0;
+
+        let totalHumidity = 0;
+
+        let validTemperature = 0;
+
+        let validHumidity = 0;
+
+        let totalActive = 0;
+
+
+
+        for (
+            let i = 1;
+            i <= 3;
+            i++
+        ) {
+
+            const data =
+                currentData[i];
+
+
+            if (
+                !isNaN(data.suhu) &&
+                data.suhu !== 0
+            ) {
+
+                totalTemperature +=
+                    data.suhu;
+
+                validTemperature++;
+
+            }
+
+
+            if (
+                !isNaN(data.kelembaban) &&
+                data.kelembaban !== 0
+            ) {
+
+                totalHumidity +=
+                    data.kelembaban;
+
+                validHumidity++;
+
+            }
+
+
+            if (data.kipas)
+                totalActive++;
+
+
+            if (data.lampu)
+                totalActive++;
+
+
+            if (data.mist)
+                totalActive++;
+
+        }
+
+
+
+        const averageTemperature =
+            validTemperature > 0
+                ? totalTemperature /
+                  validTemperature
+                : 0;
+
+
+        const averageHumidity =
+            validHumidity > 0
+                ? totalHumidity /
+                  validHumidity
+                : 0;
+
+
+
+        document
+            .getElementById(
+                "averageTemperature"
+            )
+            .textContent =
+                validTemperature > 0
+                    ? averageTemperature.toFixed(1) + " °C"
+                    : "-- °C";
+
+
+
+        document
+            .getElementById(
+                "averageHumidity"
+            )
+            .textContent =
+                validHumidity > 0
+                    ? averageHumidity.toFixed(1) + " %"
+                    : "-- %";
+
+
+
+        document
+            .getElementById(
+                "activeActuator"
+            )
+            .textContent =
+                totalActive;
+
+    }
+
+
+
+    // =========================================================
+    // LISTENER FIREBASE
+    // =========================================================
+
+    function listenToBox(
+        boxNumber
+    ) {
+
+        const paths =
+            boxData[boxNumber];
+
+
+
+        // =====================================================
+        // SUHU
+        // =====================================================
+
+        onValue(
+            ref(db, paths.suhu),
+
+            (snapshot) => {
+
+                const value =
+                    snapshot.val();
+
+
+                updateSensor(
+                    boxNumber,
+                    "suhu",
+                    value
+                );
+
+
+                updateTime(
+                    boxNumber
+                );
+
+            },
+
+            (error) => {
+
+                console.error(
+                    "Error Suhu Box " +
+                    boxNumber,
+                    error
+                );
+
+            }
+
+        );
+
+
+
+        // =====================================================
+        // KELEMBABAN
+        // =====================================================
+
+        onValue(
+            ref(db, paths.kelembaban),
+
+            (snapshot) => {
+
+                const value =
+                    snapshot.val();
+
+
+                updateSensor(
+                    boxNumber,
+                    "kelembaban",
+                    value
+                );
+
+
+                updateTime(
+                    boxNumber
+                );
+
+            },
+
+            (error) => {
+
+                console.error(
+                    "Error Kelembaban Box " +
+                    boxNumber,
+                    error
+                );
+
+            }
+
+        );
+
+
+
+        // =====================================================
+        // KIPAS
+        // =====================================================
+
+        onValue(
+            ref(db, paths.kipas),
+
+            (snapshot) => {
+
+                const value =
+                    snapshot.val();
+
+
+                updateActuator(
+                    boxNumber,
+                    "kipas",
+                    value
+                );
+
+
+                updateTime(
+                    boxNumber
+                );
+
+            },
+
+            (error) => {
+
+                console.error(
+                    "Error Kipas Box " +
+                    boxNumber,
+                    error
+                );
+
+            }
+
+        );
+
+
+
+        // =====================================================
+        // LAMPU
+        // =====================================================
+
+        onValue(
+            ref(db, paths.lampu),
+
+            (snapshot) => {
+
+                const value =
+                    snapshot.val();
+
+
+                updateActuator(
+                    boxNumber,
+                    "lampu",
+                    value
+                );
+
+
+                updateTime(
+                    boxNumber
+                );
+
+            },
+
+            (error) => {
+
+                console.error(
+                    "Error Lampu Box " +
+                    boxNumber,
+                    error
+                );
+
+            }
+
+        );
+
+
+
+        // =====================================================
+        // MIST MAKER
+        // Firebase: RelaySpringkler
+        // =====================================================
+
+        onValue(
+            ref(db, paths.mist),
+
+            (snapshot) => {
+
+                const value =
+                    snapshot.val();
+
+
+                updateActuator(
+                    boxNumber,
+                    "mist",
+                    value
+                );
+
+
+                updateTime(
+                    boxNumber
+                );
+
+            },
+
+            (error) => {
+
+                console.error(
+                    "Error Mist Maker Box " +
+                    boxNumber,
+                    error
+                );
+
+            }
+
+        );
+
+    }
+
+
+
+    // =========================================================
+    // AKTIFKAN LISTENER BOX 1, 2, 3
+    // =========================================================
+
+    listenToBox(1);
+
+    listenToBox(2);
+
+    listenToBox(3);
+
+
+
+    // =========================================================
+    // CONNECTION STATUS
+    // =========================================================
+
+    onValue(
+        ref(db, ".info/connected"),
+
+        (snapshot) => {
+
+            const connected =
+                snapshot.val();
+
+
+            const label =
+                document.querySelector(
+                    ".page-label"
+                );
+
+
+            const dot =
+                document.querySelector(
+                    ".online-dot"
+                );
+
+
+            if (connected === true) {
+
+                label.innerHTML =
+                    '<span class="online-dot"></span> SISTEM ONLINE';
+
+                dot.style.backgroundColor =
+                    "#4CAF50";
+
+            }
+            else {
+
+                label.innerHTML =
+                    '<span class="online-dot"></span> MENGHUBUNGKAN...';
+
+            }
+
+        }
+
+    );
+
+    // =========================================================
+    // GRAFIK SUHU & KELEMBABAN (CHART.JS + LOCAL STORAGE)
+    // =========================================================
+
+    // 1. Ambil data lama atau buat baru
+    let chartData = JSON.parse(localStorage.getItem('simacgot_data_grafik')) || {
+        labels: [],
+        suhu1: [], suhu2: [], suhu3: [],
+        kel1: [], kel2: [], kel3: []
+    };
+
+   // 2. Setup Grafik Suhu
+    const ctxSuhu = document.getElementById('suhuChart').getContext('2d');
+    const suhuChart = new Chart(ctxSuhu, {
+        type: 'line',
+        data: {
+            labels: chartData.labels,
+            datasets: [
+                { label: 'Temp 1 (°C)', data: chartData.suhu1, borderColor: 'red', tension: 0.3 },
+                { label: 'Temp 2 (°C)', data: chartData.suhu2, borderColor: 'blue', tension: 0.3 },
+                { label: 'Temp 3 (°C)', data: chartData.suhu3, borderColor: 'green', tension: 0.3 }
+            ]
+        },
+        options: { 
+            responsive: true, 
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    max: 50, // Menentukan batas atas grafik suhu menjadi 50
+                    beginAtZero: true // Opsional: agar grafik selalu dimulai dari angka 0
+                }
+            }
+        }
+    });
+
+    // 3. Setup Grafik Kelembaban
+    const ctxKel = document.getElementById('kelChart').getContext('2d');
+    const kelChart = new Chart(ctxKel, {
+        type: 'line',
+        data: {
+            labels: chartData.labels,
+            datasets: [
+                { label: 'Hum 1 (%)', data: chartData.kel1, borderColor: 'red', tension: 0.3 },
+                { label: 'Hum 2 (%)', data: chartData.kel2, borderColor: 'blue', tension: 0.3 },
+                { label: 'Hum 3 (%)', data: chartData.kel3, borderColor: 'green', tension: 0.3 }
+            ]
+        },
+        options: { 
+            responsive: true, 
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    max: 100, // Menentukan batas atas grafik kelembaban menjadi 100
+                    beginAtZero: true // Opsional: agar grafik selalu dimulai dari angka 0
+                }
+            }
+        }
+    });
+
+    // 4. Update Rutin Tiap 10 Detik
+    setInterval(() => {
+        const now = new Date();
+        const timeLabel = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+        // Tambah Data Baru
+        chartData.labels.push(timeLabel);
+        
+        chartData.suhu1.push(currentData[1].suhu);
+        chartData.suhu2.push(currentData[2].suhu);
+        chartData.suhu3.push(currentData[3].suhu);
+        
+        chartData.kel1.push(currentData[1].kelembaban);
+        chartData.kel2.push(currentData[2].kelembaban);
+        chartData.kel3.push(currentData[3].kelembaban);
+
+        // Batasi Maksimal 10 Data
+        if (chartData.labels.length > 10) {
+            chartData.labels.shift(); // Hapus data paling awal
+            chartData.suhu1.shift(); chartData.suhu2.shift(); chartData.suhu3.shift();
+            chartData.kel1.shift(); chartData.kel2.shift(); chartData.kel3.shift();
+        }
+
+        // Simpan ke Local Storage
+        localStorage.setItem('simacgot_data_grafik', JSON.stringify(chartData));
+
+        // Render Ulang Grafik
+        suhuChart.update();
+        kelChart.update();
+
+    }, 10000); // 10000 milidetik = 10 detik
+
+</script>
+
+
+</body>
+
+</html>
