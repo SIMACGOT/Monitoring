@@ -632,8 +632,8 @@
         width: 50%;
         max-width: 120px;
         height: auto;
-        margin-top: 0;
-        transform: translateY(-15px);
+        margin-top: -20px !important; /* Tarik maskot lebih dekat ke atas */
+        transform: none;
     }
 
     /* Container maskot tetap di tengah */
@@ -893,10 +893,312 @@
         .step-number { margin-right: 15px; margin-bottom: 0; }
     }
 
+    /* =========================================================
+   INTRO / PRELOADER SIMACGOT
+========================================================= */
+
+#simacgot-intro {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    overflow: hidden;
+    opacity: 1;
+    visibility: visible;
+    transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease;
+}
+
+/* Background dekorasi */
+#simacgot-intro::before,
+#simacgot-intro::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+#simacgot-intro::before {
+    width: 350px;
+    height: 350px;
+    background: rgba(109, 76, 65, 0.05);
+    top: -180px;
+    left: -120px;
+}
+
+#simacgot-intro::after {
+    width: 450px;
+    height: 450px;
+    background: rgba(109, 76, 65, 0.04);
+    bottom: -250px;
+    right: -150px;
+}
+
+/* Container */
+.intro-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Logo */
+.intro-logo {
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
+
+    opacity: 0;
+    transform: scale(0.5);
+
+    animation:
+        introLogo 1s ease forwards,
+        introFloat 3s ease-in-out 1s infinite;
+}
+
+/* Nama SIMACGOT */
+.intro-title {
+    margin-top: 20px;
+    margin-bottom: 5px;
+
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    letter-spacing: 2px;
+
+    color: var(--primary-brown);
+
+    opacity: 0;
+    transform: translateY(20px);
+
+    animation: introText 0.8s ease 0.4s forwards;
+}
+
+/* Tagline */
+.intro-subtitle {
+    font-size: clamp(0.75rem, 2vw, 1rem);
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+
+    opacity: 0;
+    transform: translateY(15px);
+
+    animation: introText 0.8s ease 0.7s forwards;
+}
+
+/* Loading */
+.intro-loading {
+    margin-top: 30px;
+    width: 180px;
+    height: 4px;
+
+    background: #eee;
+    border-radius: 20px;
+    overflow: hidden;
+
+    opacity: 0;
+    animation: introFade 0.6s ease 1s forwards;
+}
+
+.intro-loading-bar {
+    width: 0%;
+    height: 100%;
+    background: var(--primary-brown);
+    border-radius: 20px;
+
+    animation: loadingProgress 2.2s ease forwards;
+}
+
+/* Text loading */
+.intro-loading-text {
+    margin-top: 12px;
+
+    font-size: 0.75rem;
+    color: var(--text-muted);
+
+    opacity: 0;
+    animation: introFade 0.6s ease 1s forwards;
+}
+
+
+/* =========================================================
+   ANIMASI INTRO
+========================================================= */
+
+@keyframes introLogo {
+
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+@keyframes introText {
+
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+@keyframes introFade {
+
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+
+}
+
+@keyframes loadingProgress {
+
+    0% {
+        width: 0%;
+    }
+
+    30% {
+        width: 35%;
+    }
+
+    60% {
+        width: 65%;
+    }
+
+    85% {
+        width: 85%;
+    }
+
+    100% {
+        width: 100%;
+    }
+
+}
+
+@keyframes introFloat {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   KELUAR DARI INTRO
+========================================================= */
+
+#simacgot-intro.intro-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .intro-logo {
+        width: 100px;
+        height: 100px;
+    }
+
+    .intro-title {
+        margin-top: 15px;
+        letter-spacing: 1.5px;
+    }
+
+    .intro-subtitle {
+        padding: 0 25px;
+        line-height: 1.5;
+    }
+
+    .intro-loading {
+        width: 150px;
+    }
+
+}
+
     
     </style>
 </head>
 <body>
+
+    <!-- =========================================================
+     INTRO ANIMATION SIMACGOT
+========================================================= -->
+
+<div id="simacgot-intro">
+
+    <div class="intro-content">
+
+        <!-- LOGO -->
+        <img
+            src="logo.png"
+            alt="Logo SIMACGOT"
+            class="intro-logo"
+        >
+
+        <!-- NAMA -->
+        <h1 class="intro-title">
+            SIMACGOT
+        </h1>
+
+        <!-- TAGLINE -->
+        <p class="intro-subtitle">
+            Smart Maggot Monitoring
+        </p>
+
+        <!-- LOADING -->
+        <div class="intro-loading">
+            <div class="intro-loading-bar"></div>
+        </div>
+
+        <div class="intro-loading-text">
+            Menyiapkan sistem...
+        </div>
+
+    </div>
+
+</div>
 
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
@@ -1516,6 +1818,30 @@
 
         });
 
+</script>
+
+<script>
+    /* =========================================================
+       INTRO ANIMATION
+    ========================================================= */
+
+    window.addEventListener("load", function () {
+
+        const intro = document.getElementById("simacgot-intro");
+
+        // Durasi intro
+        setTimeout(function () {
+
+            intro.classList.add("intro-hidden");
+
+            // Hapus dari DOM setelah animasi selesai
+            setTimeout(function () {
+                intro.remove();
+            }, 800);
+
+        }, 2500);
+
+    });
 </script>
 </body>
 </html>
