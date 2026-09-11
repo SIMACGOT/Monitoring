@@ -785,7 +785,252 @@
             height: 100%;
             border: 0;
         }
+/* =========================================================
+   SECTION SKEMATIK RANGKAIAN
+========================================================= */
 
+#skematik {
+    padding: 100px 0;
+    background-color: var(--bg-offwhite);
+}
+
+.schematic-card {
+    background-color: var(--bg-white);
+    border: 1px solid #eee;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.schematic-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(109, 76, 65, 0.08);
+}
+
+.schematic-image-container {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid var(--light-brown);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.schematic-image {
+    width: 100%;
+    height: auto;
+    max-height: 700px;
+    object-fit: contain;
+    display: block;
+}
+
+.schematic-caption {
+    margin-top: 18px;
+    margin-bottom: 0;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   KOMPONEN UTAMA
+========================================================= */
+
+#komponen {
+    padding: 100px 0;
+    background-color: var(--bg-white);
+}
+
+.component-card {
+    height: 100%;
+    background-color: var(--bg-offwhite);
+    border: 1px solid #eee;
+    border-radius: 18px;
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.component-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(109, 76, 65, 0.10);
+    border-color: var(--light-brown);
+}
+
+.component-image-container {
+    width: 100%;
+    height: 220px;
+
+    background-color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+    padding: 20px;
+}
+
+.component-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+    transition: transform 0.3s ease;
+}
+
+.component-card:hover .component-image {
+    transform: scale(1.05);
+}
+
+.component-content {
+    padding: 25px;
+}
+
+.component-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+
+    background-color: rgba(109, 76, 65, 0.10);
+    color: var(--primary-brown);
+
+    font-size: 0.85rem;
+    font-weight: 700;
+
+    margin-bottom: 12px;
+}
+
+.component-title {
+    color: var(--primary-brown);
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.4;
+
+    margin-bottom: 10px;
+}
+
+.component-description {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   RESPONSIVE SKEMATIK & KOMPONEN
+========================================================= */
+
+@media (max-width: 991px) {
+
+    #skematik,
+    #komponen {
+        padding: 80px 0;
+    }
+
+    .schematic-card {
+        padding: 22px;
+    }
+
+    .component-image-container {
+        height: 200px;
+    }
+
+    .component-content {
+        padding: 22px;
+    }
+}
+
+
+@media (max-width: 767px) {
+
+    #skematik,
+    #komponen {
+        padding: 70px 0;
+    }
+
+    .schematic-card {
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .schematic-image-container {
+        border-radius: 12px;
+    }
+
+    .schematic-caption {
+        font-size: 0.82rem;
+    }
+
+    .component-image-container {
+        height: 210px;
+        padding: 25px;
+    }
+
+    .component-content {
+        padding: 20px;
+    }
+
+    .component-title {
+        font-size: 1rem;
+    }
+
+    .component-description {
+        font-size: 0.85rem;
+        line-height: 1.6;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    #skematik,
+    #komponen {
+        padding: 60px 0;
+    }
+
+    .schematic-card {
+        padding: 10px;
+    }
+
+    .component-image-container {
+        height: 190px;
+        padding: 20px;
+    }
+
+    .component-content {
+        padding: 18px;
+    }
+
+    .component-number {
+        width: 28px;
+        height: 28px;
+        font-size: 0.75rem;
+    }
+
+    .component-title {
+        font-size: 0.95rem;
+    }
+
+    .component-description {
+        font-size: 0.82rem;
+    }
+}
 
         /* =========================================================
         RESPONSIVE LOKASI
@@ -1214,6 +1459,8 @@
                     <li class="nav-item"><a class="nav-link" href="#home">HOME</a></li>
                     <li class="nav-item"><a class="nav-link" href="#fitur">FITUR</a></li>
                     <li class="nav-item"><a class="nav-link" href="#cara-kerja">CARA KERJA</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="#skematik">SKEMATIK</a> </li> 
+                    <li class="nav-item"> <a class="nav-link" href="#komponen">KOMPONEN</a> </li>
                     <li class="nav-item"><a class="nav-link" href="#lokasi">LOKASI</a></li>
                 </ul>
                 <div class="d-flex align-items-center">
@@ -1407,6 +1654,324 @@
             </div>
         </div>
     </section>
+
+<!-- =========================================================
+     SECTION SKEMATIK RANGKAIAN
+========================================================= -->
+
+<section id="skematik">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Skematik Rangkaian SIMACGOT
+        </h2>
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-10">
+
+                <div class="schematic-card">
+
+                    <div class="schematic-image-container">
+
+                        <img
+                            src="skematik.jpg"
+                            alt="Skematik Rangkaian SIMACGOT"
+                            class="schematic-image"
+                        >
+
+                    </div>
+
+                    <p class="schematic-caption">
+                        Gambar skematik rangkaian sistem SIMACGOT
+                        yang menunjukkan hubungan antara ESP32,
+                        sensor DHT22, modul relay, dan aktuator.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================================
+     SECTION KOMPONEN UTAMA
+========================================================= -->
+
+<section id="komponen">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Komponen Utama SIMACGOT
+        </h2>
+
+        <div class="row g-4">
+
+
+            <!-- =================================================
+                 1. ESP32
+            ================================================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="component-card">
+
+                    <div class="component-image-container">
+
+                        <img
+                            src="esp32.jpg"
+                            alt="NodeMCU ESP32 DevKit V1"
+                            class="component-image"
+                        >
+
+                    </div>
+
+                    <div class="component-content">
+
+                        <div class="component-number">
+                            01
+                        </div>
+
+                        <h3 class="component-title">
+                            NodeMCU ESP32 DevKit V1
+                        </h3>
+
+                        <p class="component-description">
+                            Berfungsi sebagai mikrokontroler utama
+                            yang membaca data sensor, memproses kondisi
+                            lingkungan, serta mengendalikan aktuator
+                            berdasarkan kondisi suhu dan kelembaban.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 2. DHT22
+            ================================================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="component-card">
+
+                    <div class="component-image-container">
+
+                        <img
+                            src="dht22.jpg"
+                            alt="Sensor DHT22"
+                            class="component-image"
+                        >
+
+                    </div>
+
+                    <div class="component-content">
+
+                        <div class="component-number">
+                            02
+                        </div>
+
+                        <h3 class="component-title">
+                            Sensor DHT22
+                        </h3>
+
+                        <p class="component-description">
+                            Digunakan untuk mengukur suhu dan kelembaban
+                            lingkungan pada area budidaya maggot secara
+                            real-time sebagai dasar pengendalian sistem.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 3. RELAY
+            ================================================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="component-card">
+
+                    <div class="component-image-container">
+
+                        <img
+                            src="relay.jpg"
+                            alt="Module Relay 5V 3 Channel"
+                            class="component-image"
+                        >
+
+                    </div>
+
+                    <div class="component-content">
+
+                        <div class="component-number">
+                            03
+                        </div>
+
+                        <h3 class="component-title">
+                            Module Relay 5V 3 Channel
+                        </h3>
+
+                        <p class="component-description">
+                            Berfungsi sebagai saklar elektronik untuk
+                            menghubungkan dan memutuskan aktuator seperti
+                            kipas, lampu, dan perangkat pengatur kelembaban
+                            berdasarkan perintah dari ESP32.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 4. KIPAS
+            ================================================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="component-card">
+
+                    <div class="component-image-container">
+
+                        <img
+                            src="kipas.jpg"
+                            alt="Kipas DC 5V"
+                            class="component-image"
+                        >
+
+                    </div>
+
+                    <div class="component-content">
+
+                        <div class="component-number">
+                            04
+                        </div>
+
+                        <h3 class="component-title">
+                            Kipas DC 5V
+                        </h3>
+
+                        <p class="component-description">
+                            Digunakan untuk membantu menurunkan suhu
+                            lingkungan budidaya ketika suhu terdeteksi
+                            terlalu tinggi dan menjaga sirkulasi udara.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 5. LAMPU
+            ================================================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="component-card">
+
+                    <div class="component-image-container">
+
+                        <img
+                            src="lampu.jpg"
+                            alt="Lampu AC 220V"
+                            class="component-image"
+                        >
+
+                    </div>
+
+                    <div class="component-content">
+
+                        <div class="component-number">
+                            05
+                        </div>
+
+                        <h3 class="component-title">
+                            Lampu AC 220V
+                        </h3>
+
+                        <p class="component-description">
+                            Berfungsi sebagai sumber panas tambahan untuk
+                            meningkatkan suhu lingkungan ketika kondisi
+                            budidaya berada di bawah batas yang ditentukan.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 6. MIST MAKER
+            ================================================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="component-card">
+
+                    <div class="component-image-container">
+
+                        <img
+                            src="mist-maker.jpg"
+                            alt="Mist Maker 12V"
+                            class="component-image"
+                        >
+
+                    </div>
+
+                    <div class="component-content">
+
+                        <div class="component-number">
+                            06
+                        </div>
+
+                        <h3 class="component-title">
+                            Mist Maker 12V
+                        </h3>
+
+                        <p class="component-description">
+                            Digunakan untuk meningkatkan kelembaban
+                            lingkungan dengan menghasilkan kabut air
+                            ketika kelembaban terdeteksi berada di bawah
+                            kondisi yang diinginkan.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
 
     <section id="lokasi">
         <div class="container">
