@@ -1402,6 +1402,47 @@
 
 }
 
+/* =================================================
+   RESPONSIVE COMPONENT CARD
+   Di bawah 600px → 2 kolom
+================================================= */
+
+@media (max-width: 600px) {
+    #komponen .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    #komponen .col-md-6.col-lg-4 {
+        width: 50%;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .component-card {
+        height: 100%;
+    }
+
+    .component-image {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+    }
+
+    .component-content {
+        padding: 15px;
+    }
+
+    .component-title {
+        font-size: 16px;
+    }
+
+    .component-description {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+}
+
     
     </style>
 </head>
@@ -1968,6 +2009,49 @@
     </div>
 
 </section>
+
+    ```html
+<!-- =================================================
+     7. LCD 16x2 I2C
+================================================== -->
+
+<div class="col-md-6 col-lg-4">
+
+    <div class="component-card">
+
+        <div class="component-image-container">
+
+            <img
+                src="lcd.jpg"
+                alt="LCD 16x2 I2C"
+                class="component-image"
+            >
+
+        </div>
+
+        <div class="component-content">
+
+            <div class="component-number">
+                07
+            </div>
+
+            <h3 class="component-title">
+                LCD 16x2 I2C
+            </h3>
+
+            <p class="component-description">
+                Digunakan untuk menampilkan informasi kondisi lingkungan
+                secara langsung, seperti nilai suhu, kelembaban, serta
+                status pengendalian aktuator pada sistem SIMACGOT.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+```
+
 
 
 
